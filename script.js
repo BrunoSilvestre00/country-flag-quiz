@@ -45,7 +45,7 @@ const renderData = (countriesData) => {
   const countryFlagUrl = `https://flagcdn.com/w320/${country.iso}.png`;
 
   const flagDisplay = document.getElementById("flag-display");
-  flagDisplay.innerHTML = `<img src="${countryFlagUrl}" alt="Flag of ${country.name}" class="flag-image">`;
+  flagDisplay.innerHTML = `<img src="${countryFlagUrl}" class="flag-image">`;
 
   const optionsContainer = document.getElementById("options-container");
   for (let i = 0; i < 5; i++) {
