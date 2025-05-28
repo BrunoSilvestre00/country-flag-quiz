@@ -1,13 +1,4 @@
-var streak = window.localStorage.getItem("streak") || 0;
-var maxStreak = window.localStorage.getItem("max_streak") || 0;
-
-document.addEventListener("DOMContentLoaded", () => {
-  const streakElement = document.getElementById("streak");
-  const maxStreakElement = document.getElementById("max-streak");
-
-  streakElement.textContent = `${streak}`;
-  maxStreakElement.textContent = `${maxStreak}`;
-});
+const getCountryFlagUrl = (iso) => `https://flagcdn.com/w320/${iso}.png`;
 
 const correctAnswer = () => {
   const streakElement = document.getElementById("streak");
@@ -22,7 +13,7 @@ const correctAnswer = () => {
     maxStreakElement.textContent = `${maxStreak}`;
   }
 
-  window.location.reload();
+  loadAll();
 };
 
 const wrongAnswer = () => {
@@ -35,30 +26,50 @@ const wrongAnswer = () => {
 };
 
 const getData = async () => {
+  if (countriesData.length > 0) {
+    return countriesData.sort(() => Math.random() - 0.5);
+  }
   const response = await fetch("data.json");
   const data = await response.json();
-  return data.sort(() => Math.random() - 0.5);
+  countriesData = data.sort(() => Math.random() - 0.5);
+  return countriesData;
 };
 
 const renderData = (countriesData) => {
   const country = countriesData[0];
-  const countryFlagUrl = `https://flagcdn.com/w320/${country.iso}.png`;
 
   const flagDisplay = document.getElementById("flag-display");
-  flagDisplay.innerHTML = `<img src="${countryFlagUrl}" class="flag-image">`;
+  flagDisplay.innerHTML = `<img src="${getCountryFlagUrl(country.iso)}" class="flag-image">`;
 
   const optionsContainer = document.getElementById("options-container");
+  optionsContainer.innerHTML = "";
+  const buttons = [];
+
   for (let i = 0; i < 5; i++) {
     const option = document.createElement("button");
     option.textContent = `[${countriesData[i].iso}] ${countriesData[i].name}`;
-    option.onclick = countriesData[i].iso === country.iso ? correctAnswer : wrongAnswer;
-    optionsContainer.appendChild(option);
+    option.onclick =
+      countriesData[i].iso === country.iso ? correctAnswer : wrongAnswer;
+    buttons.push(option);
   }
 
-  const buttons = Array.from(optionsContainer.children);
   buttons.sort(() => Math.random() - 0.5);
   optionsContainer.innerHTML = "";
   buttons.forEach((btn) => optionsContainer.appendChild(btn));
 };
 
-getData().then(renderData);
+const loadAll = () => getData().then(renderData);
+
+var streak = window.localStorage.getItem("streak") || 0;
+var maxStreak = window.localStorage.getItem("max_streak") || 0;
+var countriesData = [];
+
+document.addEventListener("DOMContentLoaded", () => {
+  const streakElement = document.getElementById("streak");
+  const maxStreakElement = document.getElementById("max-streak");
+
+  streakElement.textContent = `${streak}`;
+  maxStreakElement.textContent = `${maxStreak}`;
+
+  loadAll();
+});
