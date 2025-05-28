@@ -4,8 +4,8 @@ const MAX_STREAK_STORAGE_KEY = "country_flag_max_streak";
 const getCountryFlagUrl = (iso) => `https://flagcdn.com/w320/${iso}.png`;
 
 const correctAnswer = () => {
-  const streakElement = document.getElementById(STREAK_STORAGE_KEY);
-  const maxStreakElement = document.getElementById(MAX_STREAK_STORAGE_KEY);
+  const streakElement = document.getElementById("streak");
+  const maxStreakElement = document.getElementById("max-streak");
 
   streakElement.textContent = `${++streak}`;
   window.localStorage.setItem(STREAK_STORAGE_KEY, streak);
