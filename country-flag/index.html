@@ -5,24 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-    <title>🌎 Country Flag Quiz</title>
+    <title>Country Flag Quiz</title>
   </head>
   <body>
     <main>
-      <div>
-        <a href="/country-flag">Ir para Country Flag Quiz</a>
-        <span
-          >Neste modo, você verá a bandeira de um país e deverá escolher o nome
-          correto do país entre as 5 opções fornecidas.</span
-        >
+      <div class="header">
+        <h2>Country Flag Quiz</h2>
+        <p>Acertos em sequência: <span id="streak">0</span></p>
+        <p>Máximo: <span id="max-streak">0</span></p>
       </div>
-      <div>
-        <a href="/flag-country">Ir para Flag Country Quiz</a>
-        <span
-          >Neste modo, você verá o nome de um país e deverá escolher a bandeira
-          correta entre as 4 opções fornecidas.</span
-        >
+      <div class="quiz-container">
+        <div id="flag-display"></div>
+        <div id="options-container"></div>
       </div>
+      <a href="/" class="home-link">
+        Voltar para o menu principal
+      </a>
     </main>
     <footer id="footer">
       Construído por Bruno Silvestre |

@@ -29,7 +29,7 @@ const getData = async () => {
   if (countriesData.length > 0) {
     return countriesData.sort(() => Math.random() - 0.5);
   }
-  const response = await fetch("data.json");
+  const response = await fetch("../data.json");
   const data = await response.json();
   countriesData = data.sort(() => Math.random() - 0.5);
   return countriesData;
@@ -38,16 +38,17 @@ const getData = async () => {
 const renderData = (countriesData) => {
   const country = countriesData[0];
 
-  const flagDisplay = document.getElementById("flag-display");
-  flagDisplay.innerHTML = `<img src="${getCountryFlagUrl(country.iso)}" class="flag-image">`;
+  const flagDisplay = document.getElementById("country-display");
+  flagDisplay.textContent = `[${country.iso}] ${country.name}`;
+  // flagDisplay.innerHTML = `<img src="${getCountryFlagUrl(country.iso)}" class="flag-image">`;
 
   const optionsContainer = document.getElementById("options-container");
   optionsContainer.innerHTML = "";
   const buttons = [];
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 4; i++) {
     const option = document.createElement("button");
-    option.textContent = `[${countriesData[i].iso}] ${countriesData[i].name}`;
+    option.innerHTML = `<img src="${getCountryFlagUrl(countriesData[i].iso)}" class="flag-image">`;
     option.onclick =
       countriesData[i].iso === country.iso ? correctAnswer : wrongAnswer;
     buttons.push(option);

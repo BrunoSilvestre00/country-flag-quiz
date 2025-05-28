@@ -4,6 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   font-family: "Open-Sans", sans-serif;
   background: linear-gradient(to bottom, #000000, #4b4b4b, #676767);
   padding: 5vh 0;
@@ -19,7 +20,7 @@ footer {
   font-size: 10px;
   padding: 0.25rem 0;
   color: #fff;
-  background: #000A;
+  background: #000a;
   width: 100%;
   backdrop-filter: blur(5px);
   z-index: 10;
@@ -34,76 +35,44 @@ footer a {
 
 main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
   width: 100%;
   max-width: 900px;
-}
 
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-
-  h2 {
-    margin: 0;
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
-    text-decoration: underline;
-  }
-
-  p {
-    margin: 0;
-    font-size: 1.25rem;
-    color: var(--text-color);
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 }
 
-.quiz-container {
-  margin: 2rem auto;
-  background: #ffffff;
-  gap: 3rem;
-  border-radius: 0.5rem;
+main div {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 2rem 1rem;
-  width: 85%;
-}
-
-#flag-display img {
-  border-radius: 0.5rem;
-  max-height: 250px;
-  width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-#options-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 400px;
   gap: 0.5rem;
+  width: 50%;
+
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 }
 
-#options-container button {
-  width: 100%;
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+main span {
+  color: #ffffff;
+}
+
+main a {
+  color: #fff;
+  text-decoration: none;
   font-weight: bold;
-  text-align: left;
-  background: transparent;
-  border: 2px solid #aaa;
-  border-radius: 0.5rem;
-  color: #555;
-  font-family: monospace;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    background: #f0f0f0;
-    cursor: pointer;
-    border-color: #222;
-    color: #333;
+    background-color: #0056b3;
   }
 }
