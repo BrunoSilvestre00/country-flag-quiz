@@ -1,15 +1,18 @@
+const STREAK_STORAGE_KEY = "flag_country_streak";
+const MAX_STREAK_STORAGE_KEY = "flag_country_max_streak";
+
 const getCountryFlagUrl = (iso) => `https://flagcdn.com/w320/${iso}.png`;
 
 const correctAnswer = () => {
-  const streakElement = document.getElementById("streak");
-  const maxStreakElement = document.getElementById("max-streak");
+  const streakElement = document.getElementById(STREAK_STORAGE_KEY);
+  const maxStreakElement = document.getElementById(MAX_STREAK_STORAGE_KEY);
 
   streakElement.textContent = `${++streak}`;
-  window.localStorage.setItem("streak", streak);
+  window.localStorage.setItem(STREAK_STORAGE_KEY, streak);
 
   if (streak > maxStreak) {
     maxStreak = streak;
-    window.localStorage.setItem("max_streak", maxStreak);
+    window.localStorage.setItem(MAX_STREAK_STORAGE_KEY, maxStreak);
     maxStreakElement.textContent = `${maxStreak}`;
   }
 
@@ -17,7 +20,7 @@ const correctAnswer = () => {
 };
 
 const wrongAnswer = () => {
-  window.localStorage.setItem("streak", 0);
+  window.localStorage.setItem(STREAK_STORAGE_KEY, 0);
   streak = 0;
   const streakElement = document.getElementById("streak");
   streakElement.textContent = `${streak}`;
@@ -61,8 +64,8 @@ const renderData = (countriesData) => {
 
 const loadAll = () => getData().then(renderData);
 
-var streak = window.localStorage.getItem("streak") || 0;
-var maxStreak = window.localStorage.getItem("max_streak") || 0;
+var streak = window.localStorage.getItem(STREAK_STORAGE_KEY) || 0;
+var maxStreak = window.localStorage.getItem(MAX_STREAK_STORAGE_KEY) || 0;
 var countriesData = [];
 
 document.addEventListener("DOMContentLoaded", () => {
