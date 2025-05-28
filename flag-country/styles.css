@@ -32,6 +32,16 @@ footer a {
   padding: 0 4px;
 }
 
+.home-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 4px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -81,7 +91,7 @@ main {
 #options-container {
   display: grid;
   grid-template-columns: 2fr 2fr;
-  width: 100%;
+  width: 90%;
   gap: 0.5rem;
 
   @media (max-width: 600px) {

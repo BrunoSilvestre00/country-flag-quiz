@@ -32,6 +32,16 @@ footer a {
   padding: 0 4px;
 }
 
+.home-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 4px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 main {
   display: flex;
   flex-direction: column;
