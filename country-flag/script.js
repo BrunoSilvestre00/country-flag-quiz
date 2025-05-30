@@ -32,9 +32,13 @@ const getData = async () => {
   if (countriesData.length > 0) {
     return countriesData.sort(() => Math.random() - 0.5);
   }
-  const response = await fetch("../data.json");
+  const response = await fetch("../codes.json");
   const data = await response.json();
-  countriesData = data.sort(() => Math.random() - 0.5);
+  countriesData = Object.keys(data).map((iso) => ({
+    iso: iso.toLowerCase(),
+    name: data[iso],
+  }));
+  countriesData = countriesData.sort(() => Math.random() - 0.5);
   return countriesData;
 };
 
